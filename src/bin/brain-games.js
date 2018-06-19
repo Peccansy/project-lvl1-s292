@@ -1,4 +1,4 @@
-#! /usr/local/bin/node
+#!/usr/bin/env node
 import {greetUser, askForName} from '../index';
 
 greetUser();
