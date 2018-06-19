@@ -1,2 +1,5 @@
 #! /usr/local/bin/node
-console.log('Welcome to the Brain Games!');
+import {greetUser, askForName} from '../index';
+
+greetUser();
+askForName();
