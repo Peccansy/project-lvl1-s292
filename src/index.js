@@ -1,9 +1,7 @@
 import readlineSync from 'readline-sync';
-import { minInteger, maxInteger, maxIterationCount } from './data/constants';
+import { getQuestion, getAnswer, getGameInstruction } from './games';
 
-const isEven = number => number % 2 === 0;
-
-const getRandomInteger = (min, max) => min + Math.floor(Math.random() * max);
+const maxIterationCount = 3;
 
 export const brainGames = () => {
   console.log('Welcome to the Brain Games!');
@@ -12,9 +10,10 @@ export const brainGames = () => {
   console.log(`Hello, ${userName}!\n`);
 };
 
-export const evenGame = () => {
+export const runGame = (game) => {
   console.log('Welcome to the Brain Games!');
-  console.log('Answer "yes" if number even otherwise answer "no"\n');
+  console.log(getGameInstruction(game));
+  console.log('');
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!\n`);
 
@@ -24,8 +23,8 @@ export const evenGame = () => {
       return;
     }
 
-    const question = getRandomInteger(minInteger, maxInteger);
-    const expectedAnswer = isEven(question) ? 'yes' : 'no';
+    const question = getQuestion(game)();
+    const expectedAnswer = getAnswer(game)(question);
     console.log(`Question: ${question}`);
     const answer = readlineSync.question('Your answer: ');
     if (expectedAnswer === answer) {
