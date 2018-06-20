@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-import { greetUser, askForName } from '..';
+import { brainGames } from '..';
 
-greetUser();
-askForName();
+brainGames();
