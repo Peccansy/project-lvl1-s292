@@ -1,55 +1,40 @@
 import readlineSync from 'readline-sync';
+import { minInteger, maxInteger, maxIterationCount } from './data/constants';
 
-const printWelcomeMessage = () => console.log('Welcome to the Brain Games!');
+const isEven = number => number % 2 === 0;
 
-const getUserName = () => readlineSync.question('May I have your name? ');
-
-const greetUser = name => console.log(`Hello, ${name}!\n`);
-
-const printCongratulationsMessage = name => console.log(`Congratulations, ${name}!`);
-
-const printLooseMessage = name => console.log(`Let's try again, ${name}`);
-
-const printIncorrentAnswerMessage = (wrong, rigth) => {
-  console.log(`'${wrong}' is is wrong answer ;(. Correct answer was '${rigth}'.`);
-};
+const getRandomInteger = (min, max) => min + Math.floor(Math.random() * max);
 
 export const brainGames = () => {
-  printWelcomeMessage();
-  console.log('');
-  greetUser(getUserName());
+  console.log('Welcome to the Brain Games!');
+  console.log('Answer "yes" if number even otherwise answer "no"\n');
+  const userName = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${userName}!\n`);
 };
 
 export const evenGame = () => {
-  const MAX_ITERATION_COUNT = 3;
-  const MIN_INTEGER = 1;
-  const MAX_INTEGER = 100;
-  let iterationCount = 0;
-
-  const getRandomInteger = () => MIN_INTEGER + Math.floor(Math.random() * MAX_INTEGER);
-
-  printWelcomeMessage();
+  console.log('Welcome to the Brain Games!');
   console.log('Answer "yes" if number even otherwise answer "no"\n');
-  const userName = getUserName();
-  greetUser(userName);
-  const gameIter = () => {
-    if (iterationCount === MAX_ITERATION_COUNT) {
-      printCongratulationsMessage(userName);
+  const userName = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${userName}!\n`);
+
+  const gameIter = (iterationCount) => {
+    if (iterationCount === 0) {
+      console.log(`Congratulations, ${userName}!`);
       return;
     }
 
-    const currentNumber = getRandomInteger();
-    const expectedAnswer = currentNumber % 2 === 0 ? 'yes' : 'no';
-    console.log(`Question: ${currentNumber}`);
+    const question = getRandomInteger(minInteger, maxInteger);
+    const expectedAnswer = isEven(question) ? 'yes' : 'no';
+    console.log(`Question: ${question}`);
     const answer = readlineSync.question('Your answer: ');
     if (expectedAnswer === answer) {
       console.log('Correct!');
-      iterationCount += 1;
-      gameIter();
+      gameIter(iterationCount - 1);
     } else {
-      printIncorrentAnswerMessage(answer, expectedAnswer);
-      printLooseMessage(userName);
+      console.log(`'${answer}' is is wrong answer ;(. Correct answer was '${expectedAnswer}'.`);
+      console.log(`Let's try again, ${userName}`);
     }
   };
-  gameIter();
+  gameIter(maxIterationCount);
 };
