@@ -1,5 +1,4 @@
 import readlineSync from 'readline-sync';
-import { getQuestion, getAnswer, getGameInstruction } from './games';
 
 const maxIterationCount = 3;
 
@@ -10,9 +9,9 @@ export const brainGames = () => {
   console.log(`Hello, ${userName}!\n`);
 };
 
-export const runGame = (game) => {
+export const runGame = ({ instruction, getQuestion, getAnswer }) => {
   console.log('Welcome to the Brain Games!');
-  console.log(getGameInstruction(game));
+  console.log(instruction);
   console.log('');
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!\n`);
@@ -23,8 +22,8 @@ export const runGame = (game) => {
       return;
     }
 
-    const question = getQuestion(game)();
-    const expectedAnswer = getAnswer(game)(question);
+    const question = getQuestion();
+    const expectedAnswer = getAnswer(question);
     console.log(`Question: ${question}`);
     const answer = readlineSync.question('Your answer: ');
     if (expectedAnswer === answer) {
