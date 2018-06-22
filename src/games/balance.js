@@ -3,13 +3,13 @@ import runGame from '..';
 import getRandomInteger from '../utils/get-random-integer';
 
 const minRandomInteger = 10;
-const maxRandomInteger = 6000;
+const maxRandomInteger = 9999;
 
 const balance = (num) => {
   const iter = (digits) => {
     const firstDigit = digits[0];
     const lastDigit = digits[digits.length - 1];
-    if (lastDigit === (firstDigit + 1)) {
+    if (lastDigit === (firstDigit + 1) || lastDigit === firstDigit) {
       return Number.parseInt(digits.join(''), 10);
     }
     const newDigits = digits.map((d, idx) => {
@@ -26,6 +26,7 @@ export default () => {
   const getGameData = () => {
     const num = getRandomInteger(minRandomInteger, maxRandomInteger);
     const question = `${num}`;
+    console.log(question);
     const answer = `${balance(num)}`;
     return cons(question, answer);
   };
