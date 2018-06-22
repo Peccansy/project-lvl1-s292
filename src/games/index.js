@@ -1,3 +1,3 @@
-export { default as brainCalc } from './brain-calc';
-export { default as evenGame } from './even-game';
-export { default as brainGcd } from './brain-gcd';
+export { default as calc } from './calc';
+export { default as even } from './even';
+export { default as gcd } from './gcd';
