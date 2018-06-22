@@ -26,7 +26,6 @@ export default () => {
   const getGameData = () => {
     const num = getRandomInteger(minRandomInteger, maxRandomInteger);
     const question = `${num}`;
-    console.log(question);
     const answer = `${balance(num)}`;
     return cons(question, answer);
   };
