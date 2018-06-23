@@ -1,6 +1,6 @@
 import { cons } from 'hexlet-pairs';
 import runGame from '..';
-import getRandomInteger from '../utils/get-random-integer';
+import getRandomInteger from '../utils';
 
 const maxRandomInteger = 100;
 const minRandomInteger = 1;

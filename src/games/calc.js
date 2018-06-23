@@ -1,6 +1,6 @@
 import { cons } from 'hexlet-pairs';
 import runGame from '..';
-import getRandomInteger from '../utils/get-random-integer';
+import getRandomInteger from '../utils';
 
 const operationsMap = {
   '+': (a, b) => a + b,
