@@ -3,13 +3,14 @@ import getRandomInteger from '../utils';
 import runGame from '..';
 
 const isPrime = (num) => {
-  const iter = (digit, divider = 2) => {
-    if (digit <= 2) return digit === 2;
+  if (num <= 2) return num === 2;
+  const iter = (digit, divider) => {
     if (digit % divider === 0) return false;
     if (digit / 2 <= divider) return true;
     return iter(digit, divider + 1);
   };
-  return iter(num);
+  const divider = 2;
+  return iter(num, divider);
 };
 
 export default () => {
